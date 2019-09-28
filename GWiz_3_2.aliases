@@ -1,0 +1,9 @@
+[cRIO-9076]
+cRIO-9076 = "192.168.0.2"
+
+[My Computer]
+My Computer = "129.97.110.236"
+
+[RT CompactRIO Target]
+RT CompactRIO Target = "0.0.0.0"
+
