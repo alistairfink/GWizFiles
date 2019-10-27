@@ -4,11 +4,11 @@ s = tf('s');
 t = 0.040948;
 p = 1.88/(0.068*s^2+s);
 timeDelay = (1-(t/4)*s)/(1+(t/4)*s);
-%P = p*timeDelay;
-P = p;
+P = p*timeDelay;
+%P = p;
 
-%Lambda = [-10, -190, -190, -190, -190];
-Lambda = [-8+3*1i, -8-3*1i, -50];
+Lambda = [-8+5*1i, -8-5*1i, -60+5*1i, -60-5*1i, -90];
+%Lambda = [-8+3*1i, -8-3*1i, -50];
 %Lambda = [-9+8i, -9-8i, -20];
 C = pp(P,Lambda)
 stepinfo(feedback(P*C, 1))
