@@ -17,13 +17,21 @@ k2 = 0.061;
 k3 = 4.78/(s^2);
 p2 = k2*k3/s;
 
-real1 = -0.61;
-img1 = 0.1;
+real1 = -0.7;
+img1 = 0.4;
 
-real2 = -1.91;
-img2 = 0.1;
+real2 = -8;
+img2 = 0.5;
 
-pole3 = -15;
+pole3 = -10;
+
+% real1 = -0.7;
+% img1 = 0.4;
+% 
+% real2 = -10;
+% img2 = 0.5;
+% 
+% pole3 = -25;
 
 % real1 = -0.7;
 % img1 = 0.3;
@@ -60,15 +68,15 @@ bw = bandwidth(feedback(p2*C2, 1))
 % T = 2*pi/(25*bw);
 T = 0.029012;
 
-% discreteController = c2d(C2/s, T, 'tustin')
+discreteController = c2d(C2/s, T, 'tustin')
 
 
-% [y,t] = step(minreal(feedback(p2*C2,1)));
-% 
-% figure('Position', [300, 100, 800, 395]);
-% plot(t, y, 'b', 'linewidth', 2);
-% grid on;
-% set(gca, 'FontSize', 16);
-% xlabel('Time (s)','interpreter','latex','FontSize',20);
-% ylabel('Angular position (radians)','interpreter','latex','FontSize',20);
-% xlim([0,max(t)])
+[y,t] = step(minreal(feedback(p2*C2,1)));
+
+figure('Position', [300, 100, 800, 395]);
+plot(t, y, 'b', 'linewidth', 2);
+grid on;
+set(gca, 'FontSize', 16);
+xlabel('Time (s)','interpreter','latex','FontSize',20);
+ylabel('Angular position (radians)','interpreter','latex','FontSize',20);
+xlim([0,max(t)])
