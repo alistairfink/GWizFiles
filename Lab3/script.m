@@ -15,7 +15,7 @@ inner = feedback(P*C1, 1);
 % c2ld = 7*(s+0.35)/(s+2.5);
 k2 = 0.061;
 k3 = 4.78/(s^2);
-p2 = k2*k3/s;
+p2 = k2*k3;
 
 real1 = -0.61;
 img1 = 0.1;
@@ -51,6 +51,8 @@ pole3 = -15;
 Lambda2 = [real1+img1*1i, real1-img1*1i, real2+img2*1i, real2-img2*1i,  pole3];
 C2 = pp(p2,Lambda2)
 
+% pidTuner(p2, 'pid')
+
 % kp = 2.3654;
 % ki = 0.24151;
 % kd = 5.7916;
@@ -60,7 +62,14 @@ bw = bandwidth(feedback(p2*C2, 1))
 % T = 2*pi/(25*bw);
 T = 0.029012;
 
-% discreteController = c2d(C2/s, T, 'tustin')
+kp = 9.124;
+ki = 2.2755;
+kd = 9.1459;
+Nd = 100;
+
+pid_controller = kp + (ki/s) + ( kd*(Nd/(1+Nd/s)) )
+
+discreteController = c2d(pid_controller, T, 'tustin')
 
 
 % [y,t] = step(minreal(feedback(p2*C2,1)));
