@@ -31,6 +31,7 @@ if (Loop < 3) /* all shift registers cleared after 3rd iteration; this statement
         /* Place your outer loop BALL POSITION CONTROLLER below */
         //BallPosn = 0; // REMOVE this line when the ball is being used on the beam
         outerError = -(ref - BallPosn);
+
         //outerControl = (6.789*outerError -6.721*outerError1 + 0.93*ThRef1);
 
        //outerControl = 1.211*outerError - 1.21*outerError1 - 1.211*outerError2 + 1.21*outerError3
@@ -39,14 +40,16 @@ if (Loop < 3) /* all shift registers cleared after 3rd iteration; this statement
        //       + 2*ThRef1 - 1*ThRef2 ;
 //outerControl = 7.335*outerError - 7.191*outerError1 - 7.334*outerError2 + 7.192*outerError3
            //    + 2.209*ThRef1 - 1.499*ThRef2 +0.2896*ThRef3;
+//outerControl = 382.4*outerError - 753.8*outerError1 +371.5*outerError2 
+   //            + 0.8161*ThRef1 + 0.1839*ThRef2;
+
 outerControl = 33.86*outerError - 32.81*outerError1 - 33.85*outerError2 + 32.82*outerError3
                + 2.301*ThRef1 - 1.754*ThRef2 + 0.4527*ThRef3;
-
         //outerControl = -0.12;
         ThRef = outerControl;
         
 
-        float err_allowed = 0.01;
+        float err_allowed = 0.003;
         if(outerControl > 0 && abs(outerError) > err_allowed) {
             outerControl += 0.04;
         } else if(outerControl < 0 && abs(outerError) >err_allowed) {
